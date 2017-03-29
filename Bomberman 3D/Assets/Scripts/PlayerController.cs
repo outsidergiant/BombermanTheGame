@@ -49,7 +49,7 @@ public class PlayerController : MovingBase
 
     protected override void AttemptMove(int xDir, int zDir)
     {
-        TurnHead(xDir, zDir);
+        
         RaycastHit hit;
         if (Move(xDir, zDir, out hit))
         {

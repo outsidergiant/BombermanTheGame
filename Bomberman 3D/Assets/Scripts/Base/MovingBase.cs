@@ -50,13 +50,18 @@ public abstract class MovingBase : MonoBehaviour {
 
     protected bool Move(int xDir, int zDir, out RaycastHit hit)
     {
+        
         Vector3 start = transform.position;
         Vector3 end = start + new Vector3(xDir, 0f, zDir);
         Debug.Log(Physics.Linecast(start, end, out hit));
         if (hit.transform == null)
         {
             if (lockMove == 0)
+            {
+                TurnHead(xDir, zDir);
                 StartCoroutine(SmoothMovement(end));
+            }
+                
             return true;
         }
         return false;
