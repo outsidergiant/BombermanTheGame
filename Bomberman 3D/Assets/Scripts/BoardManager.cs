@@ -104,7 +104,7 @@ public class BoardManager : MonoBehaviour {
         LayoutObjectAtRandom(new GameObject[] {player}, 1, 1);
         Debug.Log("position: " + player.transform.position);
         //int enemyCount = (int)Mathf.Log(level, 2f);
-        //LayoutObjectAtRandom(enemyTiles, enemyCount, enemyCount);
+        LayoutObjectAtRandom(enemyTiles, 1, 5);
         //Instantiate(exit, new Vector3(columns - 1, rows - 1, 0f), Quaternion.identity);
     }
 }

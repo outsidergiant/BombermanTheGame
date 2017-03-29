@@ -75,9 +75,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\ConcreteWallView.cs" />
+    <Compile Include="Assets\NewBehaviourScript.cs" />
+    <Compile Include="Assets\Scripts\Base\MovingBase.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\IBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\ShoothMoveBehaviour.cs" />
+    <Compile Include="Assets\Scripts\BoardManager.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\GlobalParameters.cs" />
-    <Compile Include="Assets\Scripts\TileView.cs" />
+    <Compile Include="Assets\Scripts\Loader.cs" />
+    <Compile Include="Assets\Scripts\PlayerController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
