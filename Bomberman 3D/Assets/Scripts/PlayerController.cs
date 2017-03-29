@@ -63,6 +63,14 @@ public class PlayerController : MovingBase
 
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            this.gameObject.SetActive(false);
+        }
+    }
+
     protected virtual void CheckIfGameOver() { }
 
 
