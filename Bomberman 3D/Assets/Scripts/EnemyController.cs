@@ -21,12 +21,12 @@ public class EnemyController : MovingBase
         directions.Add(x);
         directions.Add(z);
 
-        int[] direction = directions[Random.RandomRange(0, directions.Count + 1)];
+        int[] direction = directions[Random.RandomRange(0, directions.Count)];
         int xDir = 0;
         int zDir = 0;
-        if (Random.RandomRange(0, directions.Count + 1) == 0)
+        if (Random.RandomRange(0, directions.Count) == 0)
         {
-            xDir = directions[0][Random.RandomRange(0, 4)];
+            xDir = directions[0][Random.RandomRange(0, 3)];
         } else
         {
             zDir = directions[1][Random.RandomRange(0, 4)];
