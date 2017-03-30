@@ -48,7 +48,7 @@ public class BoardManager : MonoBehaviour {
                 else
                 {
                     gridPositions.Add(new Vector3(x, 0f, z));
-                    Debug.Log(x + "  " + z);
+                    //Debug.Log(x + "  " + z);
                 }
             }
         }

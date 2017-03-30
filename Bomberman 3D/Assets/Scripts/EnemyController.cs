@@ -29,7 +29,7 @@ public class EnemyController : MovingBase
             xDir = directions[0][Random.RandomRange(0, 3)];
         } else
         {
-            zDir = directions[1][Random.RandomRange(0, 4)];
+            zDir = directions[1][Random.RandomRange(0, 3)];
         }
         AttemptMove(xDir, zDir);
     }
