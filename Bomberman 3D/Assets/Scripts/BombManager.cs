@@ -6,7 +6,6 @@ using System;
 
 public class BombManager : MonoBehaviour
 {
-<<<<<<< HEAD
     public List<Bomb> bombs;
     public GameObject blastWave;
 
@@ -26,12 +25,16 @@ public class BombManager : MonoBehaviour
     {
         if (waves != null)
         {
+            
             wavesTTL -= Time.deltaTime;
             if (wavesTTL <= 0)
             {
+                Debug.Log("time to remove!");
+                Debug.Log("WAVES COUNT: " + waves.Count);
                 foreach (GameObject wave in waves)
                 {
-                    wave.SetActive(false);
+                    DestroyObject(wave);
+                        ///wave.SetActive(false);
                 }
                 wavesTTL = 0.5f;
                 waves = null;
@@ -42,20 +45,7 @@ public class BombManager : MonoBehaviour
 
     protected virtual void UpdateBombTTL()
     {
-        for (int i = 0; i < bombs.Count; i++)
-        {
-=======
-
-    //public bool isBombActive = false;
-    public List<Bomb> bombs;
-    //public int explosionRadius;
-    //public int playerBombNumber = 1;
-    //public float timeToExplode = 2f;
-
-    void Update()
-    {
         for (int i = 0; i < bombs.Count; i++) {
->>>>>>> origin/master
             Bomb bomb = bombs[i];
             bomb.timeToExplode -= Time.deltaTime;
             if (bomb.timeToExplode <= 0)
@@ -68,7 +58,6 @@ public class BombManager : MonoBehaviour
     public BombManager()
     {
         bombs = new List<Bomb>();
-<<<<<<< HEAD
         bombFactory = FactoryContainer.Instance.Resolve<IBombFactory>();
     }
 
@@ -111,50 +100,9 @@ public class BombManager : MonoBehaviour
         position.z = (float)Math.Round(position.z);
         bomb.BombPrefab.transform.position = position;
         bomb.BombPrefab.SetActive(true);
-        Instantiate(bomb.BombPrefab);
+        bomb.BombPrefab = Instantiate(bomb.BombPrefab);
         bombs.Add(bomb);
     }
-
-    //public void GetNewBomb()
-    //{
-
-    //}
-=======
-    }
-
-    private void bomb_BombExploded(object sender, System.EventArgs e)
-    {
-        Bomb bomb = sender as Bomb;
-        if (bomb != null)
-        {
-            Explode(bomb);
-        }
-    }
-
-    private void Explode(Bomb bomb)
-    {
-        //bomb.BombPrefab;
-        //bomb.IsBombActive = false;
-        bomb.BombPrefab.SetActive(false);
-        //Debug.Log("Before remove: " + bombs.Count);
-        bombs.Remove(bomb);
-        //Debug.Log("After remove: " + bombs.Count);
-    }
-
-    public void DropNewBomb(Bomb bomb, Vector3 position)
-    {
-        position.x = (float)Math.Round(position.x);
-        position.z = (float)Math.Round(position.z);
-        //Debug.Log("DROP NEW " + bomb.bombPrefab);
-        //bomb.IsBombActive = true;
-        bomb.BombPrefab.transform.position = position;
-        bomb.BombPrefab.SetActive(true);
-        bomb.BombExploded += bomb_BombExploded;
-        bombs.Add(bomb);
-        Debug.Log(position);
-
-    }
->>>>>>> origin/master
 }
 
 

@@ -5,19 +5,14 @@ using UnityEngine;
 
 public class PlayerController : MovingBase
 {
-<<<<<<< HEAD
-=======
-    public Rigidbody rigidBody;
->>>>>>> origin/master
     public GameObject bombObject;
     public int playerBombNumber;
     public int explosionRadius;
 
-<<<<<<< HEAD
-=======
+
     private int frameCounter = 0;
     private Vector3 end;
->>>>>>> origin/master
+
     private BombManager bombManager;
 
 
@@ -27,17 +22,13 @@ public class PlayerController : MovingBase
         base.OnStart();
         speed = SpeedTypes.Normal;
         bombManager = GetComponent<BombManager>();
-<<<<<<< HEAD
-=======
         //bomb = Instantiate(bomb, this.gameObject.transform.position, Quaternion.identity) as GameObject;
         //bomb.SetActive(isBombActive);
->>>>>>> origin/master
     }
 
     void Update()
     {
         MonitorInput();
-<<<<<<< HEAD
     }
 
     protected virtual void MonitorInput()
@@ -89,7 +80,6 @@ public class PlayerController : MovingBase
         {
             AttemptMove(horizontal, vertical);
         }
-=======
 
         //if (isBombActive)
         //{
@@ -113,53 +103,7 @@ public class PlayerController : MovingBase
         //    transform.position = newPostion;
         //    sqrRemainingDistance = (transform.position - end).sqrMagnitude;
         //}
->>>>>>> origin/master
     }
-
-    protected virtual void MonitorInput()
-    {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            if (bombManager.bombs.Count < playerBombNumber)
-            {
-                Debug.Log("Bomb Manager Count: " + bombManager.bombs.Count);
-                Bomb bomb = new Bomb(Instantiate(bombObject));//GetComponent<Bomb>();//new Bomb();
-                //bombObject.SetActive(true);
-                //bomb.bombPrefab = bombObject;
-                bomb.explosionRadius = explosionRadius;
-                bombManager.DropNewBomb(bomb, this.transform.position);
-
-            }
-
-        }
-        else
-        {
-            int horizontal = 0;
-            int vertical = 0;
-            horizontal = (int)(Input.GetAxisRaw("Horizontal"));
-            vertical = (int)(Input.GetAxisRaw("Vertical"));
-            if (horizontal != 0)
-            {
-                vertical = 0;
-            }
-            if (horizontal != 0 || vertical != 0)
-            {
-                AttemptMove(horizontal, vertical);
-            }
-        }
-    }
-
-    //protected virtual void DropTheBomb()
-    //{
-    //    isBombActive = true;
-    //    bomb.transform.position = this.transform.position;
-    //    bomb.SetActive(isBombActive);
-    //    Debug.Log("Drop the bomb");
-    //    //activeBomb =
-    //      //          Instantiate(bomb, this.gameObject.transform.position, Quaternion.identity) as GameObject;
-    //    //activeBomb.SetActive(true);
-
-    //}
 
     protected override void AttemptMove(int xDir, int zDir)
     {
@@ -184,11 +128,6 @@ public class PlayerController : MovingBase
             this.gameObject.SetActive(false);
         }
     }
-<<<<<<< HEAD
-=======
-
-    protected virtual void CheckIfGameOver() { }
->>>>>>> origin/master
 
     protected virtual void CheckIfGameOver() { }
 
