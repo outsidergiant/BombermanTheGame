@@ -12,9 +12,12 @@ public class Bomb //: INotifyPropertyChanged
 
     //public event PropertyChangedEventHandler PropertyChanged;
     public GameObject BombPrefab { get; set; }
+<<<<<<< HEAD
     public int explosionRadius = 1;
     public float timeToExplode = 2f;
 
+=======
+>>>>>>> origin/master
     //private bool isBombActive;
     //public bool IsBombActive
     //{
@@ -28,7 +31,12 @@ public class Bomb //: INotifyPropertyChanged
     //        //BombPrefab.SetActive(value);
     //    }
     //}
+<<<<<<< HEAD
 
+=======
+    public int explosionRadius;
+    public float timeToExplode = 2f;
+>>>>>>> origin/master
 
 
     private Timer timer;
