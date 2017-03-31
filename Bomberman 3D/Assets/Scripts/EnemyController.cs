@@ -5,38 +5,56 @@ using UnityEngine;
 public class EnemyController : MovingBase
 {
 
-    // Use this for initialization
-    void Start()
+    private int xDir = 0;
+    private int zDir = 0;
+    private List<int[]> directions;
+    private BombManager bombManager;
+
+    protected override void OnStart()
     {
-        base.Start();
+        base.OnStart();
         speed = SpeedTypes.Slowest;
+        bombManager = GetComponent<BombManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        List<int[]> directions = new List<int[]>();
+        CalcEnemyDirection();
+        AttemptMove(xDir, zDir);
+    }
+
+    protected virtual void InitPossibleDirections()
+    {
+        directions = new List<int[]>();
         int[] x = new int[] { -1, 0, 1 };
         int[] z = new int[] { -1, 0, 1 };
         directions.Add(x);
         directions.Add(z);
+    }
 
-        int[] direction = directions[Random.RandomRange(0, directions.Count + 1)];
-        int xDir = 0;
-        int zDir = 0;
-        if (Random.RandomRange(0, directions.Count + 1) == 0)
+    protected virtual void CalcEnemyDirection()
+    {
+        InitPossibleDirections();
+        ChooseRandomDirection();
+    }
+
+    protected virtual void ChooseRandomDirection()
+    {
+        if (Random.Range(0, directions.Count) == 0)
         {
-            xDir = directions[0][Random.RandomRange(0, 4)];
-        } else
-        {
-            zDir = directions[1][Random.RandomRange(0, 4)];
+            xDir = directions[0][Random.Range(0, 3)];
         }
-        AttemptMove(xDir, zDir);
+        else
+        {
+            zDir = directions[1][Random.Range(0, 3)];
+        }
     }
 
     protected override void AttemptMove(int xDir, int zDir)
     {
         RaycastHit hit;
         Move(xDir, zDir, out hit);
+        //bombManager.DropNewBomb(this.transform.position);
     }
 }

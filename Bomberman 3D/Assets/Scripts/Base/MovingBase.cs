@@ -22,9 +22,15 @@ public abstract class MovingBase : MonoBehaviour {
 
     private int lockMove;
 
-    protected virtual void Start()
+    protected virtual void OnStart()
     {
         rigidBody = GetComponent<Rigidbody>();
+        
+    }
+
+    void Start()
+    {
+        OnStart();
     }
 
     protected virtual void Update()
@@ -53,7 +59,7 @@ public abstract class MovingBase : MonoBehaviour {
         
         Vector3 start = transform.position;
         Vector3 end = start + new Vector3(xDir, 0f, zDir);
-        Debug.Log(Physics.Linecast(start, end, out hit));
+        Physics.Linecast(start, end, out hit);
         if (hit.transform == null)
         {
             if (lockMove == 0)

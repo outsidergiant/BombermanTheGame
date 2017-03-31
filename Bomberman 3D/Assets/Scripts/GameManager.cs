@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-    public static GameManager instance = null;              
+    public static GameManager instance = null;
+
     private BoardManager boardScript;                       
-    private int level = 3;                                  
+    private int level = 3;
+                                      
 
     void Awake()
     {
@@ -21,6 +23,10 @@ public class GameManager : MonoBehaviour {
 
     void InitGame()
     {
+        FactoryContainer container = FactoryContainer.Instance;
+        container.Register<IBombFactory, BombFactory>();
         boardScript.SetupScene(level);
+        
+        
     }       
 }
