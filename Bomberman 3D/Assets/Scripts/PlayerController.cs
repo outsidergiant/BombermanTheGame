@@ -3,27 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MovingBase
+//public enum SpeedTypes
+//{
+//    Slowest = 1, Slow = 2, Normal = 3
+//}
+
+public class PlayerController : CharacterControllerBase
 {
-    public GameObject bombObject;
-    public int playerBombNumber;
-    public int explosionRadius;
-
-
-    private int frameCounter = 0;
-    private Vector3 end;
-
+    private Player player;
     private BombManager bombManager;
 
-
-    // Use this for initialization
-    protected override void OnStart()
+    void Start()
     {
-        base.OnStart();
-        speed = SpeedTypes.Normal;
+        player = new Player();
         bombManager = GetComponent<BombManager>();
-        //bomb = Instantiate(bomb, this.gameObject.transform.position, Quaternion.identity) as GameObject;
-        //bomb.SetActive(isBombActive);
+        base.OnStart();
     }
 
     void Update()
@@ -31,7 +25,7 @@ public class PlayerController : MovingBase
         MonitorInput();
     }
 
-    protected virtual void MonitorInput()
+    public virtual void MonitorInput( )
     {
         CheckPlayerActions();
         CheckMovingAttempts();
@@ -41,12 +35,10 @@ public class PlayerController : MovingBase
     {
         if (Input.GetKeyUp(KeyCode.A))
         {
-            if (bombManager.bombs.Count < playerBombNumber)
+            if (bombManager == null) return;
+            if (bombManager.bombs.Count < player.playerBombNumber)
             {
-                Debug.Log("Bomb Manager Count: " + bombManager.bombs.Count);
-                //Bomb bomb = new Bomb(Instantiate(bombObject));
-                //bomb.explosionRadius = explosionRadius;
-                bombManager.DropNewBomb(this.transform.position);
+                bombManager.DropNewBomb(transform.position);
             }
         }
     }
@@ -78,47 +70,9 @@ public class PlayerController : MovingBase
         }
         if (horizontal != 0 || vertical != 0)
         {
-            AttemptMove(horizontal, vertical);
+            RaycastHit hit;
+            Move(horizontal, vertical, out hit, player.speed);
         }
-
-        //if (isBombActive)
-        //{
-        //    timeToExplode -= Time.deltaTime;
-        //    if (timeToExplode <= 0) {
-        //        ExplodeTheBomb();
-        //    }
-        //}
-
-        //if (transform.position != end && end.x != 0 && end.y != 0 && end.z != 0)
-        //{
-        //    frameCounter++;
-        //    if (frameCounter == 10)
-        //    {
-        //        frameCounter = 0;
-        //        end = transform.position;
-        //    }
-        //    float sqrRemainingDistance = (transform.position - end).sqrMagnitude;
-        //    Vector3 newPostion = Vector3.MoveTowards(rigidBody.position, end, speed * Time.deltaTime);
-
-        //    transform.position = newPostion;
-        //    sqrRemainingDistance = (transform.position - end).sqrMagnitude;
-        //}
-    }
-
-    protected override void AttemptMove(int xDir, int zDir)
-    {
-
-        RaycastHit hit;
-        if (Move(xDir, zDir, out hit))
-        {
-
-            //end = transform.position + new Vector3(xDir, 0f, zDir);
-            //end.x = (float)Math.Round(end.x);
-            //end.z = (float)Math.Round(end.z);
-            //Sounds...
-        }
-        CheckIfGameOver();
-
     }
 
     void OnTriggerEnter(Collider other)
@@ -128,7 +82,4 @@ public class PlayerController : MovingBase
             this.gameObject.SetActive(false);
         }
     }
-
-    protected virtual void CheckIfGameOver() { }
-
 }

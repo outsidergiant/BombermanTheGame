@@ -47,18 +47,27 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\NewBehaviourScript.cs" />
-     <Compile Include="Assets\Scripts\Base\MovingBase.cs" />
-     <Compile Include="Assets\Scripts\Behaviours\IBehaviour.cs" />
-     <Compile Include="Assets\Scripts\Behaviours\ShoothMoveBehaviour.cs" />
+     <Compile Include="Assets\Scripts\Abilities\WallPass.cs" />
+     <Compile Include="Assets\Scripts\Base\CharacterBase.cs" />
+     <Compile Include="Assets\Scripts\Base\CharacterControllerBase.cs" />
+     <Compile Include="Assets\Scripts\Base\IAbility.cs" />
+     <Compile Include="Assets\Scripts\BlastWaveBehaviour.cs" />
      <Compile Include="Assets\Scripts\BoardManager.cs" />
-     <Compile Include="Assets\Scripts\Bomb.cs" />
      <Compile Include="Assets\Scripts\BombManager.cs" />
      <Compile Include="Assets\Scripts\EnemyController.cs" />
+     <Compile Include="Assets\Scripts\Entities\Bomb.cs" />
+     <Compile Include="Assets\Scripts\Entities\Characters\Enemy.cs" />
+     <Compile Include="Assets\Scripts\Entities\Characters\Player.cs" />
+     <Compile Include="Assets\Scripts\Factories\BombFactory.cs" />
+     <Compile Include="Assets\Scripts\Factories\Enemy1Factory.cs" />
+     <Compile Include="Assets\Scripts\Factories\Enemy2Factory.cs" />
+     <Compile Include="Assets\Scripts\Factories\FactoryContainer.cs" />
+     <Compile Include="Assets\Scripts\Factories\IFactory.cs" />
+     <Compile Include="Assets\Scripts\Factories\PlayerFactory.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\GlobalParameters.cs" />
      <Compile Include="Assets\Scripts\Loader.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
-     <Compile Include="Assets\Scripts\PrefabManager.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

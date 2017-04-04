@@ -23,10 +23,18 @@ public class GameManager : MonoBehaviour {
 
     void InitGame()
     {
-        FactoryContainer container = FactoryContainer.Instance;
-        container.Register<IBombFactory, BombFactory>();
+        RegisterFactories();
         boardScript.SetupScene(level);
         
         
-    }       
+    }
+
+    void RegisterFactories()
+    {
+        FactoryContainer container = FactoryContainer.Instance;
+        container.Register<BombFactory>();
+        container.Register<PlayerFactory>();
+        container.Register<Enemy1Factory>();
+        container.Register<Enemy2Factory>();
+    }
 }

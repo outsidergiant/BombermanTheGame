@@ -13,7 +13,7 @@ public class BombManager : MonoBehaviour
     private List<GameObject> waves;
     private float wavesTTL = 0.5f;
     private GameManager gameManager;
-    private IBombFactory bombFactory;
+    private BombFactory bombFactory;
 
     void Update()
     {
@@ -29,12 +29,9 @@ public class BombManager : MonoBehaviour
             wavesTTL -= Time.deltaTime;
             if (wavesTTL <= 0)
             {
-                Debug.Log("time to remove!");
-                Debug.Log("WAVES COUNT: " + waves.Count);
                 foreach (GameObject wave in waves)
                 {
                     DestroyObject(wave);
-                        ///wave.SetActive(false);
                 }
                 wavesTTL = 0.5f;
                 waves = null;
@@ -58,7 +55,7 @@ public class BombManager : MonoBehaviour
     public BombManager()
     {
         bombs = new List<Bomb>();
-        bombFactory = FactoryContainer.Instance.Resolve<IBombFactory>();
+        bombFactory = FactoryContainer.Instance.Resolve<BombFactory>();
     }
 
     protected virtual void Explode(Bomb bomb)
@@ -72,7 +69,6 @@ public class BombManager : MonoBehaviour
     protected virtual void CreateBlastWave(Bomb bomb)
     {
         Transform transform = bomb.BombPrefab.transform;
-        //playerController = GetComponent<PlayerController>();
         waves = new List<GameObject>();
         waves.Add(Instantiate(blastWave, transform.position, Quaternion.identity));
         MakeWaveGo(bomb, transform.forward);
@@ -89,13 +85,12 @@ public class BombManager : MonoBehaviour
         {
             position += direction;
             waves.Add(Instantiate(blastWave, position, Quaternion.identity));
-
         }
     }
 
     public void DropNewBomb(Vector3 position)
     {
-        Bomb bomb = new Bomb(bombFactory.GetBomb());
+        Bomb bomb = new Bomb(bombFactory.GetObject());
         position.x = (float)Math.Round(position.x);
         position.z = (float)Math.Round(position.z);
         bomb.BombPrefab.transform.position = position;

@@ -32,6 +32,7 @@ public class BoardManager : MonoBehaviour {
 
     private Transform boardHolder;                                 
     private List<Vector3> gridPositions = new List<Vector3>();
+    private float y = 0f;
 
     void InitialiseList()
     {
@@ -47,7 +48,7 @@ public class BoardManager : MonoBehaviour {
                 }
                 else
                 {
-                    gridPositions.Add(new Vector3(x, 0f, z));
+                    gridPositions.Add(new Vector3(x, y, z));
                     //Debug.Log(x + "  " + z);
                 }
             }
@@ -57,7 +58,7 @@ public class BoardManager : MonoBehaviour {
     void InstantiateGameObject(GameObject toInstantiate, int x, int z)
     {
         GameObject instance =
-                    Instantiate(toInstantiate, new Vector3(x, 0f, z), Quaternion.identity) as GameObject;
+                    Instantiate(toInstantiate, new Vector3(x, y, z), Quaternion.identity) as GameObject;
         instance.transform.SetParent(boardHolder);
     }
 
@@ -101,10 +102,17 @@ public class BoardManager : MonoBehaviour {
         BoardSetup();
         InitialiseList();
         LayoutObjectAtRandom(brickWallTiles, wallCount.minimum, wallCount.maximum);
-        LayoutObjectAtRandom(new GameObject[] {player}, 1, 1);
-        Debug.Log("position: " + player.transform.position);
+        GameObject playerObject = FactoryContainer.Instance.Resolve<PlayerFactory>().GetObject();
+        LayoutObjectAtRandom(new GameObject[] {playerObject}, 1, 1);
+        //Debug.Log("position: " + player.transform.position);
         //int enemyCount = (int)Mathf.Log(level, 2f);
+        enemyTiles = new GameObject[] {
+            FactoryContainer.Instance.Resolve<Enemy1Factory>().GetObject(),
+            FactoryContainer.Instance.Resolve<Enemy2Factory>().GetObject()
+        };
         LayoutObjectAtRandom(enemyTiles, 1, 5);
+        
+        
         //Instantiate(exit, new Vector3(columns - 1, rows - 1, 0f), Quaternion.identity);
     }
 }
