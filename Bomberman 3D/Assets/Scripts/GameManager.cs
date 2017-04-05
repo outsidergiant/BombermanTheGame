@@ -36,10 +36,5 @@ public class GameManager : MonoBehaviour {
         container.Register<PlayerFactory>();
         container.Register<Enemy1Factory>();
         container.Register<Enemy2Factory>();
-<<<<<<< HEAD
     }
 }
-=======
-    }
-}
->>>>>>> origin/master

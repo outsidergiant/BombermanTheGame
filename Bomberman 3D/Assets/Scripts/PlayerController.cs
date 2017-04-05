@@ -38,7 +38,7 @@ public class PlayerController : CharacterControllerBase
             if (bombManager == null) return;
             if (bombManager.bombs.Count < player.playerBombNumber)
             {
-                bombManager.DropNewBomb(transform.position);
+                bombManager.DropNewBomb(transform.position, player.explosionRadius);
             }
         }
     }

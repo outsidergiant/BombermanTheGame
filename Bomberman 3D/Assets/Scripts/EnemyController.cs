@@ -50,31 +50,8 @@ public class EnemyController : CharacterControllerBase
         else
         {
             zDir = directions[1][Random.Range(0, 3)];
-<<<<<<< HEAD
-=======
         }
-
-        if (Random.Range(0, directions.Count) == 0)
-        {
-            xDir = directions[0][Random.Range(0, 3)];
-        } else
-        {
-            zDir = directions[1][Random.Range(0, 3)];
->>>>>>> origin/master
-        }
-
-<<<<<<< HEAD
-        //if (Random.Range(0, directions.Count) == 0)
-        //{
-        //    xDir = directions[0][Random.Range(0, 3)];
-        //} else
-        //{
-        //    zDir = directions[1][Random.Range(0, 3)];
-        //}
     }
-
-=======
->>>>>>> origin/master
     //protected override void AttemptMove(int xDir, int zDir)
     //{
     //    RaycastHit hit;

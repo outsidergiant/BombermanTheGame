@@ -53,11 +53,11 @@ public class CharacterControllerBase : MonoBehaviour
         return false;
     }
 
-    public void GoSmooth(int xDir, int zDir, SpeedTypes speed)
-    {
-        Vector3 end = transform.position + new Vector3(xDir, 0f, zDir);
-        StartCoroutine(SmoothMovement(end, speed));
-    }
+    //public void GoSmooth(int xDir, int zDir, SpeedTypes speed)
+    //{
+    //    Vector3 end = transform.position + new Vector3(xDir, 0f, zDir);
+    //    StartCoroutine(SmoothMovement(end, speed));
+    //}
 
     protected IEnumerator SmoothMovement(Vector3 end, SpeedTypes speed)
     {

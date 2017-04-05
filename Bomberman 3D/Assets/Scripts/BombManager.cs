@@ -88,13 +88,14 @@ public class BombManager : MonoBehaviour
         }
     }
 
-    public void DropNewBomb(Vector3 position)
+    public void DropNewBomb(Vector3 position, int radius)
     {
         Bomb bomb = new Bomb(bombFactory.GetObject());
         position.x = (float)Math.Round(position.x);
         position.z = (float)Math.Round(position.z);
         bomb.BombPrefab.transform.position = position;
         bomb.BombPrefab.SetActive(true);
+        bomb.explosionRadius = radius;
         bomb.BombPrefab = Instantiate(bomb.BombPrefab);
         bombs.Add(bomb);
     }

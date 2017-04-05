@@ -11,7 +11,7 @@ public class Player : CharacterBase {
     public Player() : base()
     {
         speed = SpeedTypes.Normal;
-        explosionRadius = 1;
+        explosionRadius = 2;
         playerBombNumber = 1;
     }
 }
