@@ -94,6 +94,10 @@ public class BoardManager : MonoBehaviour {
             Vector3 randomPosition = RandomPosition();
             GameObject tileChoice = tileArray[Random.Range(0, tileArray.Length)];
             Instantiate(tileChoice, randomPosition, Quaternion.identity);
+            if (tileChoice.CompareTag("Brick") && i == 0)
+            {
+                Instantiate((Resources.Load(@"Exit") as GameObject), randomPosition, Quaternion.identity);
+            }
         }
     }
 
